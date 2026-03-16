@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSVアンケート分析ツール</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero panel">
+      <p class="eyebrow">CSV Survey Analyzer</p>
+      <h1>CSVアンケート分析ツール</h1>
+      <p class="hero-copy">
+        CSVを読み込むだけでアンケート結果を簡単に可視化できます。列ごとにグラフ形式を切り替えられ、PNG保存とPDF出力に対応しています。演劇アンケートやイベント集計などに使えるV1ツールです。
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel input-panel" aria-labelledby="input-title">
+        <div class="panel-heading">
+          <h2 id="input-title">CSV入力</h2>
+          <p>ファイル選択またはCSV貼り付けのどちらでも読み込めます。</p>
+        </div>
+
+        <div class="input-stack">
+          <label class="field">
+            <span>CSVファイルを選択</span>
+            <input id="csvFileInput" type="file" accept=".csv,text/csv">
+          </label>
+
+          <label class="field">
+            <span>CSVテキストを貼り付け</span>
+            <textarea id="csvTextInput" rows="10" placeholder="ここにCSVを貼り付けてください"></textarea>
+          </label>
+
+          <div class="toolbar">
+            <button id="loadCsvButton" type="button" class="primary-button">読み込む</button>
+            <button id="loadSampleButton" type="button" class="secondary-button">サンプルCSVを入れる</button>
+          </div>
+        </div>
+
+        <div id="errorBox" class="message-box error-box" role="alert" aria-live="polite"></div>
+        <div id="statusBox" class="message-box status-box" aria-live="polite"></div>
+      </section>
+
+      <section class="panel overview-panel" aria-labelledby="overview-title">
+        <div class="panel-heading">
+          <h2 id="overview-title">全体概要</h2>
+          <p>CSV読み込み後に総回答数や列数を表示します。</p>
+        </div>
+        <div id="overviewGrid" class="overview-grid">
+          <div class="overview-item">
+            <span>総回答数</span>
+            <strong>-</strong>
+          </div>
+          <div class="overview-item">
+            <span>列数</span>
+            <strong>-</strong>
+          </div>
+          <div class="overview-item">
+            <span>ファイル名</span>
+            <strong>-</strong>
+          </div>
+          <div class="overview-item">
+            <span>読み込み方法</span>
+            <strong>-</strong>
+          </div>
+          <div class="overview-item">
+            <span>読込日時</span>
+            <strong>-</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="panel results-panel" aria-labelledby="results-title">
+      <div class="panel-heading output-head">
+        <div>
+          <h2 id="results-title">分析カード一覧</h2>
+          <p>列タイプやグラフ形式を切り替えながら、列ごとの結果を確認できます。</p>
+        </div>
+        <div class="output-tools">
+          <label class="control compact-control">
+            <span>PDFレイアウト</span>
+            <select id="pdfLayoutSelect">
+              <option value="single">1カラム</option>
+              <option value="double">2カラム</option>
+            </select>
+          </label>
+          <button id="exportPdfButton" type="button" class="primary-button" disabled>PDF出力</button>
+        </div>
+      </div>
+
+      <div id="resultsExportArea">
+        <div id="hiddenColumnsBar" class="hidden-columns-bar is-hidden">
+          <strong>非表示中の列</strong>
+          <div id="hiddenColumnsList" class="hidden-columns-list"></div>
+        </div>
+        <div id="emptyState" class="empty-state">
+          CSVを読み込むと、ここに列ごとの分析カードが表示されます。
+        </div>
+        <div id="analysisCards" class="cards-grid"></div>
+      </div>
+    </section>
+
+    <footer class="app-credit" aria-label="クレジット">
+      <p class="credit-text">Created by 未完製作所</p>
+      <a
+        class="tip-button"
+        href="https://buy.stripe.com/eVqaEW31F85U9UE22NdMI01"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        TIPで支援する
+      </a>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
