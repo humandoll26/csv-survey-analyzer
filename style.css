@@ -228,6 +228,57 @@ h1 {
   padding-bottom: 24px;
 }
 
+.customize-card {
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.customize-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.customize-card h2 {
+  margin-bottom: 0;
+  font-size: 1.08rem;
+}
+
+.customize-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.customize-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #fafaf8;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.customize-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.customize-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .output-head {
   display: flex;
   justify-content: space-between;
@@ -498,5 +549,9 @@ h1 {
   .app-credit {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .customize-actions {
+    flex-direction: column;
   }
 }
